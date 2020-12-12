@@ -60,25 +60,76 @@ if (!neighbours.includes("Germany")) {
 neighbours[neighbours.indexOf("Canada")] = "Japan";
 console.log(neighbours);
 
-// intro to objects exercises
+// intro to objects exercises + object methods exercises
 const myCountry = {
     country: "United States",
     capital: "Washington D.C.",
     language: "English",
     population: 328,
-    neighbours: ["Canada", "Mexico"]
+    neighbours: ["Canada", "Mexico"],
+
+    describe: function() {
+        console.log(
+            `The ${this.country} has ${this.population} million ${this.language}-speaking people, ${[this.neighbours.length]} neighbouring countries, and a capital
+            called ${this.capital}`
+        );
+    },
+
+    checkIsland: function() {
+        this.isIsland = this.neighbours.length === 0 ? true : false;
+        console.log(this.isIsland);
+    }
 };
 
+myCountry.describe(); 
+myCountry.checkIsland();
+
 // dot vs. bracket notation exercises
+console.log(`The ${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${neighbours.length} neighbouring countries,
+and a capital called ${myCountry.capital}`);
 
+myCountry.population += 2;
+console.log(myCountry.population);
 
-// object methods exercises
+myCountry['population'] += 2; 
+console.log(myCountry.population);
 
 // for loop exercises
+function voteChecker(voters) {
+    for (let i = 1; i <= voters; i++) {
+        console.log(`Voter number ${[i]} is currently voting.`);
+    }
+}
+
+// voteChecker(50);
 
 // looping arrays, breaking, continuing exercises
+const arrPop = [328, 66, 106]; 
+const arrPercs = [];
+
+for (let i = 0; i < arrPop.length; i++) {
+    const percentage = percentageOfWorld1(arrPop[i]);
+    arrPercs.push(percentage);
+}
+
+console.log(percentages);
 
 // looping backwards and nested loops exercises
+const listofNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
+
+for (let i = 0; i < listofNeighbours.length; i++) {
+    for (let j = 0; j < listofNeighbours[i].length; j++) {
+        console.log(`Neighbour: ${listofNeighbours[i][j]}`);
+    }
+}
 
 // while loops exercises
+const percentages3 = [];
+let i = 0;
 
+while (i < populations.length) {
+    const perc = percentageOfWorld1(populations[i]);
+    percentages3.push(perc);
+    i++;
+}
+console.log(percentages3);
