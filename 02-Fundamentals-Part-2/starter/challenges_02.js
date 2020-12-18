@@ -92,3 +92,15 @@ for (let i = 0; i < diningBills.length; i++) {
 
 console.log(diningTips);
 console.log(totals);
+
+function calcBillAvg(arr) {
+    let billSum = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        billSum += arr[i];
+    }
+
+    return billSum / arr.length; 
+}
+
+console.log(calcBillAvg(totals));
