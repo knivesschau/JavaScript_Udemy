@@ -1,11 +1,10 @@
 'use strict';
 
 // number guessing game functionality + reset game challenge
-const number = Math.trunc(Math.random() * 20) + 1;
+let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20; 
 
-document.querySelector('.number').textContent = number; 
-
+// game functionality
 document.querySelector('.check').addEventListener('click', function() {
     const numberGuess = Number(document.querySelector('.guess').value);
 
@@ -13,6 +12,7 @@ document.querySelector('.check').addEventListener('click', function() {
         document.querySelector('.message').textContent = '🚫 No number entered!';
     }
     else if (numberGuess === number) {
+        document.querySelector('.number').textContent = number; 
         document.querySelector('.message').textContent = '🎊 Correct! +1 point!'; 
         score++;
         document.querySelector('.score').textContent = score;
@@ -22,7 +22,7 @@ document.querySelector('.check').addEventListener('click', function() {
     }
     else if (numberGuess > number) {
         if (score > 1) {
-            document.querySelector('.message').textContent = '📈 You guessed too high! -1 point!';
+            document.querySelector('.message').textContent = '📈 Too high! -1 point!';
             score--;
             document.querySelector('.score').textContent = score;
         }
@@ -33,7 +33,7 @@ document.querySelector('.check').addEventListener('click', function() {
     }
     else if (numberGuess < number) {
         if (score > 1) {
-            document.querySelector('.message').textContent = '📉 You guessed too low! -1 point!';
+            document.querySelector('.message').textContent = '📉 Too low! -1 point!';
             score--;
             document.querySelector('.score').textContent = score;
         }
@@ -42,4 +42,16 @@ document.querySelector('.check').addEventListener('click', function() {
             document.querySelector('.score').textContent = 0;
         }
     }
+});
+
+document.querySelector('.again').addEventListener('click', function() {
+    score = 20;
+    number = Math.trunc(Math.random() * 20) + 1;
+
+    document.querySelector('.message').textContent = 'Start guessing...';
+    document.querySelector('.score').textContent = score;
+    document.querySelector('.number').textContent = '?';
+    document.querySelector('.guess').value = '';
+    document.querySelector('body').style.backgroundColor = '#222';
+    document.querySelector('.number').style.width = '15rem';
 });
