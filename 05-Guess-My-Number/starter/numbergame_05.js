@@ -5,47 +5,55 @@ let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20; 
 let highScore = 0; 
 
+const displayMessage = function(message) {
+    document.querySelector('.message').textContent = message;
+}
+
+const displayScore = function(score) {
+    document.querySelector('.score').textContent = score; 
+}
+
+const resetGame = function(defaultText, defaultValue, defaultBg, defaultWidth) {
+    document.querySelector('.number').textContent = defaultText;
+    document.querySelector('.guess').value = defaultValue;
+    document.querySelector('body').style.backgroundColor = defaultBg;
+    document.querySelector('.number').style.width = defaultWidth;
+}
+
+const gameWin = function(actualNum, winningBg, winningNum) {
+    document.querySelector('.number').textContent = actualNum;
+    document.querySelector('body').style.backgroundColor = winningBg;
+    document.querySelector('.number').style.width = winningNum;
+}
+
 // game functionality
 document.querySelector('.check').addEventListener('click', function() {
     const numberGuess = Number(document.querySelector('.guess').value);
 
     if (!numberGuess) {
-        document.querySelector('.message').textContent = '🚫 No number entered!';
+        displayMessage('🚫 No number entered!');
     }
     else if (numberGuess === number) {
-        document.querySelector('.number').textContent = number; 
-        document.querySelector('.message').textContent = '🎊 Correct! +1 point!'; 
+        gameWin(number, '#60b347', '30rem');
+        displayMessage('🎊 Correct! +1 point!'); 
         score++;
-        document.querySelector('.score').textContent = score;
-
-        document.querySelector('body').style.backgroundColor = '#60b347';
-        document.querySelector('.number').style.width = '30rem';
+        displayScore(score);
 
         if (score > highScore) {
             highScore = score; 
             document.querySelector('.highscore').textContent = highScore;
         }
     }
-    else if (numberGuess > number) {
+
+    else if (numberGuess !== number) {
         if (score > 1) {
-            document.querySelector('.message').textContent = '📈 Too high! -1 point!';
+            displayMessage(numberGuess > number ? '📈 Too high! -1 point!' : '📉 Too low! -1 point!');
             score--;
-            document.querySelector('.score').textContent = score;
+            displayScore(score);
         }
         else {
-            document.querySelector('.message').textContent = '😭 Game Over 😭';
-            document.querySelector('.score').textContent = 0;
-        }
-    }
-    else if (numberGuess < number) {
-        if (score > 1) {
-            document.querySelector('.message').textContent = '📉 Too low! -1 point!';
-            score--;
-            document.querySelector('.score').textContent = score;
-        }
-        else {
-            document.querySelector('.message').textContent = '😭 Game Over 😭';
-            document.querySelector('.score').textContent = 0;
+            displayMessage('😭 Game Over 😭');
+            displayScore(0);
         }
     }
 });
@@ -54,10 +62,7 @@ document.querySelector('.again').addEventListener('click', function() {
     score = 20;
     number = Math.trunc(Math.random() * 20) + 1;
 
-    document.querySelector('.message').textContent = 'Start guessing...';
-    document.querySelector('.score').textContent = score;
-    document.querySelector('.number').textContent = '?';
-    document.querySelector('.guess').value = '';
-    document.querySelector('body').style.backgroundColor = '#222';
-    document.querySelector('.number').style.width = '15rem';
+    displayMessage('Start guessing...');
+    displayScore(score);
+    resetGame('?', '', '#222', '15rem');
 });
