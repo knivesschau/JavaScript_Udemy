@@ -99,3 +99,23 @@ newPerson.calcuAge();
 
 ageCalc(1990);
 arrowAge(1970);
+
+// primitive vs reference value examples
+let lastName = "Craig"; 
+let oldLastName = lastName; // primitive value saved as it's own piece of memory into the stack 
+lastName = "Johnson";
+console.log(lastName, oldLastName);
+
+const daniel = {
+    firstName: 'Daniel',
+    lastName: 'Craig',
+    age: 35
+};
+
+const marriedDaniel = daniel;  // copying the REFERENCE, which then points to the same object 
+marriedDaniel.lastName = 'Johnson'; // does not create a new object in heap, MUTATES the original object and values 
+
+console.log('Before marriage:', daniel); 
+console.log('After marriage:', marriedDaniel);
+
+// to shallow copy objects w/o mutating values, use Object.assign({}, x) to merge objects together. ONLY WORKS FOR NON-TIERED OBJECTS
