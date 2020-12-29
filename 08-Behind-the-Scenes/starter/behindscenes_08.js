@@ -31,3 +31,39 @@ function calcAge(birthYear) {
 
 const firstName = 'Catrina';
 calcAge(1993);
+
+// hoisting examples for variables 
+console.log(me);
+// console.log(job);
+// console.log(year);
+
+var me = 'Jonas'; // var is hoisted to UNDEFINED
+let job = 'teacher'; // cannot access before initilization because it is in the TDZ (temporal dead zone)
+const year = 1990;  // same as let, in the TDZ 
+
+// hoisting for functions 
+console.log(hoistDecl(2, 3));
+// console.log(hoistExpr(2, 3));
+// console.log(hoistArr(2, 3));
+
+function hoistDecl(a,b) { // functions declarations are hoisted 
+    return a + b;
+}
+
+const hoistExpr = function(a,b) { // cannot access before initilization for function expression (currently a "const variable")
+    return a + b;
+}
+
+const hoistArr = (a, b) => a + b; // same as function expression, arrow func is in the TDZ because function assigned to variable 
+
+// another hoisting example for functions 
+if (!numProducts) {
+    clearShoppingCart();
+}
+
+var numProducts = 10; // function console statement ran due to var hoisting and being turned into "undefined"
+
+function clearShoppingCart() {
+    console.log('All products removed!');
+}
+
