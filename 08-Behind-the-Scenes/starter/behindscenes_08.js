@@ -67,3 +67,35 @@ function clearShoppingCart() {
     console.log('All products removed!');
 }
 
+// this keyword exercises 
+console.log(this); // global object pointing to window object (aka the browser)
+
+const ageCalc = function(birthYr) {
+    console.log(2020 - birthYr);
+    console.log(this); // undefined using strict mode, prevents it from being in window object
+}
+
+const arrowAge = brthYr => {
+	console.log(2055 - brthYr);
+	console.log(this); // arrow func becomes lexical "this" keyword, goes to parent scope (aka the window global object)
+}
+
+const myself = {
+	year: 1993, 
+	calcuAge: function() {
+		console.log(this); // points towards object that is calling the method 
+		console.log(2055 - this.year);
+	}
+}
+
+myself.calcuAge();
+
+const newPerson = {
+	year: 1980
+}
+
+newPerson.calcuAge = myself.calcuAge; // method borrowing, borrow method from one object to another 
+newPerson.calcuAge();
+
+ageCalc(1990);
+arrowAge(1970);
