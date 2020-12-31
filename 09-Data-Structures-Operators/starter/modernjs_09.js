@@ -24,8 +24,49 @@ const restaurant = {
       close: 24,
     },
   },
+
+  orderDelivery: function({starterIndex = 1, mainIndex = 0, time = '20:00', address}) {
+    console.log(`Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}. Will be delivered at ${time} to ${address}`);
+  },
 };
 
+// object destructuring with functions  + default values 
+restaurant.orderDelivery({
+  time: '22:30', 
+  address: 'Via Del Sol 21', 
+  mainIndex: 2, 
+  starterIndex: 2
+});
+
+restaurant.orderDelivery({
+  address: 'Isle Delfino 50',
+  starterIndex: 1
+});
+
+// object destructuring exercises
+const {name, openingHours, categories} = restaurant; // have to name the object's properties!
+console.log(name, openingHours, categories);
+
+// renaming object properties + destructuring
+const {name: restaurantName, openingHours: hours, categories: tags} = restaurant;
+console.log(restaurantName, hours, tags);
+
+// default values + renaming properties w/ object destructuring
+const {menu = [], starterMenu: starters = []} = restaurant;
+console.log(menu, starters);
+
+// mutating object variables w/ destructuring
+let num1 = 125;
+let num2 = 900;
+const obj = {num1: 50, num2: 7, num3: 13};
+({num1, num2} = obj);
+console.log(num1, num2);
+
+// destructuring nested objects
+const {fri: {open, close}} = openingHours; 
+console.log(open, close);
+
+// arr destructuring exercises
 const arr = [2, 3, 4];
 const a = arr[0]; // without arr destructuring
 const b = arr[1]; // without arr destructuring
