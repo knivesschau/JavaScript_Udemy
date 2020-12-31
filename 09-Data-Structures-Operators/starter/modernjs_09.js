@@ -28,8 +28,49 @@ const restaurant = {
   orderDelivery: function({starterIndex = 1, mainIndex = 0, time = '20:00', address}) {
     console.log(`Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}. Will be delivered at ${time} to ${address}`);
   },
+
+  orderPasta: function(ing1, ing2, ing3) {
+    console.log(`Your pasta has ${ing1}, ${ing2}, and ${ing3}`);
+  },
 };
 
+// spread operator exercises
+const firstArr = [7, 8, 9]; 
+const newArr = [1, 2, ...firstArr]; // writes the sprArr values INTO the new array without having to manually write it out
+console.log(newArr);
+
+console.log(...newArr); // when you need to pass multiple elements into function
+
+const newMenu = [...restaurant.mainMenu, 'Gnocchi']; // creating NEW ARRAY, not mutating original mainMenu subarray 
+console.log(newMenu);
+
+// shallow copying arrays w/ spread
+const copyMainMenu = [...restaurant.mainMenu];
+console.log(copyMainMenu);
+
+// join arrays w/ spread
+const wholeMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(wholeMenu);
+
+// iterables with spread operator (arrays, strings, maps, sets)
+const str = 'Catrina';
+const letters = [...str, ' ', 's'];
+console.log(letters);
+console.log(...str);
+
+// spread operator with functions
+const ingredients = ['spaghetti', 'mushrooms', 'meatballs'];
+console.log(ingredients);
+restaurant.orderPasta(...ingredients);
+
+// spread operator with objects
+const newRestaurant = {...restaurant, founder: 'Tony Soprano', established: '1999'};
+console.log(newRestaurant);
+const restaurantCopy = {...restaurant};
+restaurantCopy.name = 'Satrialle"s';
+console.log(restaurantCopy);
+
+// object destructuring exercises
 // object destructuring with functions  + default values 
 restaurant.orderDelivery({
   time: '22:30', 
@@ -43,7 +84,7 @@ restaurant.orderDelivery({
   starterIndex: 1
 });
 
-// object destructuring exercises
+// basic destructure
 const {name, openingHours, categories} = restaurant; // have to name the object's properties!
 console.log(name, openingHours, categories);
 
