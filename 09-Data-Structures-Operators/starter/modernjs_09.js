@@ -32,7 +32,40 @@ const restaurant = {
   orderPasta: function(ing1, ing2, ing3) {
     console.log(`Your pasta has ${ing1}, ${ing2}, and ${ing3}`);
   },
+
+  orderPizza: function(mainIngredient, ...otherToppings) {
+    console.log(mainIngredient);
+    console.log(otherToppings);
+  },
 };
+
+// rest pattern exercises (spread operator on LEFT HAND SIDE)
+const rightArr = [1, 2, ...[3, 4]];
+const [l, m, ...others] = [1, 2, 3, 4, 5]; // LEFT SIDE OF EQUALS SIGN IS REST PATTERN
+console.log(l, m, others); // collects unused elements into new array after destructured values 
+
+const [pizza, ,risotto, ...otherOptions] = [...restaurant.mainMenu, ...restaurant.starterMenu]; // REST IS LAST CALL
+console.log(pizza, risotto, otherOptions); // rest does NOT include skipped elements in destructure call 
+
+// rest pattern with objects 
+const {sat, ...weekdays} = restaurant.openingHours;
+console.log(weekdays);
+
+// rest pattern with functions (rest parameters)
+const add = function(...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+}
+
+add(4, 6, 10, 15);
+add(10, 15, 20);
+add(20, 40, 50, 100, 200, 33);
+
+restaurant.orderPizza('mushrooms', 'pineapple', 'olives', 'spinach', 'canadian bacon');
+restaurant.orderPizza('pepperoni');
 
 // spread operator exercises
 const firstArr = [7, 8, 9]; 
