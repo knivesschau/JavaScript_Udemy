@@ -39,11 +39,16 @@ const restaurant = {
   },
 };
 
+// nullish coalescing operator 
+restaurant.numGuests = 0;
+const accurateGuest = restaurant.numGuests ?? 10; // nullish coalescing, evals on NULL values rather than TRUTHY values
+console.log(accurateGuest); 
+
 // more applications of && and || (short circuit eval)
 const guests = restaurant.numGuests || 10; // prints the truthy value, aka the default value of 10 
 console.log(guests); // but if restaurant.numGuests is defined, || will print that instead (first truthy value found)
 
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach'); // prints first FALSE VALUE IF ALL values are truthy 
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach'); // prints IF ALL values are truthy 
 
 // rest pattern exercises (spread operator on LEFT HAND SIDE) 
 const rightArr = [1, 2, ...[3, 4]];
@@ -75,7 +80,7 @@ restaurant.orderPizza('pepperoni');
 
 // spread operator exercises
 const firstArr = [7, 8, 9]; 
-const newArr = [1, 2, ...firstArr]; // writes the sprArr values INTO the new array without having to manually write it out
+const newArr = [1, 2, ...firstArr]; // writes the spare values INTO the new array without having to manually write it out
 console.log(newArr);
 
 console.log(...newArr); // when you need to pass multiple elements into function
