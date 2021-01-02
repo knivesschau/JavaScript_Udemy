@@ -39,7 +39,13 @@ const restaurant = {
   },
 };
 
-// rest pattern exercises (spread operator on LEFT HAND SIDE)
+// more applications of && and || (short circuit eval)
+const guests = restaurant.numGuests || 10; // prints the truthy value, aka the default value of 10 
+console.log(guests); // but if restaurant.numGuests is defined, || will print that instead (first truthy value found)
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach'); // prints first FALSE VALUE IF ALL values are truthy 
+
+// rest pattern exercises (spread operator on LEFT HAND SIDE) 
 const rightArr = [1, 2, ...[3, 4]];
 const [l, m, ...others] = [1, 2, 3, 4, 5]; // LEFT SIDE OF EQUALS SIGN IS REST PATTERN
 console.log(l, m, others); // collects unused elements into new array after destructured values 
