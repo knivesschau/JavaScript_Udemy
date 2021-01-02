@@ -1,43 +1,51 @@
 'use strict';
 
+// enhanced object literals
+const openDays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const operatingHours = {
+  [openDays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [openDays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [openDays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  order: function(starterIndex, mainIndex) {
+
+  order(starterIndex, mainIndex) { // improved function syntax for methods made with object literals ES6 updates
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  operatingHours, // call the declared object literal to copy it into object
 
-  orderDelivery: function({starterIndex = 1, mainIndex = 0, time = '20:00', address}) {
+  orderDelivery({starterIndex = 1, mainIndex = 0, time = '20:00', address}) {
     console.log(`Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}. Will be delivered at ${time} to ${address}`);
   },
 
-  orderPasta: function(ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Your pasta has ${ing1}, ${ing2}, and ${ing3}`);
   },
 
-  orderPizza: function(mainIngredient, ...otherToppings) {
+  orderPizza(mainIngredient, ...otherToppings) {
     console.log(mainIngredient);
     console.log(otherToppings);
   },
 };
+
+console.log(restaurant.operatingHours);
 
 // for...of loops with arrays
 const loopMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -70,7 +78,7 @@ const [pizza, ,risotto, ...otherOptions] = [...restaurant.mainMenu, ...restauran
 console.log(pizza, risotto, otherOptions); // rest does NOT include skipped elements in destructure call 
 
 // rest pattern with objects 
-const {sat, ...weekdays} = restaurant.openingHours;
+const {sat, ...weekdays} = restaurant.operatingHours;
 console.log(weekdays);
 
 // rest pattern with functions (rest parameters)
@@ -159,7 +167,7 @@ const obj = {num1: 50, num2: 7, num3: 13};
 console.log(num1, num2);
 
 // destructuring nested objects
-const {fri: {open, close}} = openingHours; 
+const {fri: {open, close}} = operatingHours; 
 console.log(open, close);
 
 // arr destructuring exercises
