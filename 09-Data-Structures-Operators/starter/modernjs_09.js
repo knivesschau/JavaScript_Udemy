@@ -39,6 +39,17 @@ const restaurant = {
   },
 };
 
+// for...of loops with arrays
+const loopMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of loopMenu) {
+  console.log(item);
+}
+
+for (const [i, el] of loopMenu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
 // nullish coalescing operator 
 restaurant.numGuests = 0;
 const accurateGuest = restaurant.numGuests ?? 10; // nullish coalescing, evals on NULL values rather than TRUTHY values
