@@ -74,3 +74,26 @@ printGoals(...game.scored);
 // who is more likely to win with && operator 
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
+
+// coding challenge #2
+// looping over game.scored array
+for (const [i, player] of game.scored.entries()) {
+    console.log(`Goal ${i + 1}: ${player}`);
+}
+
+// looping to calcuate average odds
+const gameOdds = Object.values(game.odds);
+let avg = 0;
+
+for (const chance of gameOdds) {
+    avg += chance;
+}
+
+avg /= gameOdds.length;
+console.log(avg);
+
+// printing odds
+for (const [team, odd] of Object.entries(game.odds)) {
+    const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+    console.log(`Odd of ${teamStr}: ${odd}`);
+}
