@@ -47,6 +47,28 @@ const restaurant = {
 
 console.log(restaurant.operatingHours);
 
+// sets exercises
+const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta', 'Pizza']);
+console.log(orderSet); // set removes all duplicate values, only can contain UNIQUE values
+console.log(orderSet.size); // works like array.length
+console.log(orderSet.has('Pizza')); // check if value in set exists
+
+orderSet.add('Garlic Bread'); // add values to the set
+console.log(orderSet);
+
+orderSet.delete('Risotto'); // delete values from the set
+console.log(orderSet);
+
+// looping over sets
+for (const order of orderSet) {
+  console.log(order);
+}
+
+// converting array to sets (they are iterable!)
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffRoles = [...new Set(staff)];
+console.log(staffRoles);
+
 // looping over objects
 // property name loops (keys)
 const properties = Object.keys(operatingHours);
