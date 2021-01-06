@@ -47,6 +47,64 @@ const restaurant = {
 
 console.log(restaurant.operatingHours);
 
+// map iteration exercises
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again!']
+]);
+
+const hoursMap = new Map(Object.entries(operatingHours)); // convert an object to a map
+console.log(hoursMap);
+
+console.log(question.get('question')); 
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+
+const answer = 3;
+console.log(question.get(question.get('correct') === answer));
+
+// convert map to array
+console.log([...question]);
+
+// maps exercises
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+rest.set(2, 'Lisbon, Portugal');
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'we are open!') // boolean map keys
+  .set(false, 'we are closed') // set chaining
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+const time = 21; 
+console.log(rest.get(time > rest.get('open') && time < rest.get('closed')));
+
+console.log(rest.has('categories'));
+rest.delete(2); // delete key from map
+console.log(rest);
+console.log(rest.size); // map length 
+// to clear, use rest.clear();
+
+const arrMap = [1,2];
+rest.set(arrMap, 'Test');
+console.log(rest.get(arrMap));
+
 // sets exercises
 const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta', 'Pizza']);
 console.log(orderSet); // set removes all duplicate values, only can contain UNIQUE values
@@ -59,7 +117,7 @@ console.log(orderSet);
 orderSet.delete('Risotto'); // delete values from the set
 console.log(orderSet);
 
-// looping over sets
+// looping over sets-
 for (const order of orderSet) {
   console.log(order);
 }
