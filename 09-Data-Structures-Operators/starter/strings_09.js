@@ -91,3 +91,50 @@ checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun');
 
 // string manipulation exercises pt. 3
+console.log('a+very+nice+string'.split('+'));
+console.log('Mario Luigi'.split(' '));
+
+const [firstName, lastName] = 'Bowser Koopa'.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+// name capitalizer exercise 
+const capitalizeName = function(name) {
+    const lowerCaseName = name.split(' ');
+    const formattedNames = [];
+
+    for (const letter of lowerCaseName) {
+        formattedNames.push(letter.replace(letter[0], letter[0].toUpperCase()));
+    }
+    console.log(formattedNames.join(' '));
+};
+
+capitalizeName('princess peach toadstool');
+capitalizeName('luigi brotherton');
+
+// padding strings
+const message = "Please go to Gate 23!";
+console.log(message.padStart(25, '+').padEnd(35, '+'));
+
+// masking strings
+const maskCreditCard = function(number) {
+    const str = number + '';
+    const last = str.slice(-4);
+    return last.padStart(str.length, '*');
+}
+
+console.log(maskCreditCard(303030200193));
+console.log(maskCreditCard('222040404029'));
+
+// repeat method
+const airportAnnounce = 'Bad weather.... All Departures Delayed... ';
+console.log(airportAnnounce.repeat(5));
+
+const planesInQueue = function(n) {
+    console.log(`There are ${n} planes in line ${'🛩'.repeat(n)}`);
+}
+
+planesInQueue(5);
+planesInQueue(3);
+planesInQueue(12);
