@@ -129,3 +129,18 @@ for (const [min, event] of gameEvents) {
     const half = min <= 45 ? 'First' : 'Second';
     console.log(`${half} Half: ${min}: ${event}`);
 }
+
+// coding challenge #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function() {
+    const text = document.querySelector('textarea').value;
+    const rows = text.split('\n');
+
+    for(const [i, row] of rows.entries()) {
+        const [firstWord, secondWord] = row.toLowerCase().trim().split('_');
+        const output = `${firstWord}${secondWord.replace(secondWord[0], secondWord[0].toUpperCase())}`;
+        console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+    }
+});
