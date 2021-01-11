@@ -56,3 +56,21 @@ checkIn(flight, passengerInfo); // passport info no longer the same, so it alter
 
 // javascript passes BY VALUE, not by reference! 
 
+// first class and higher-order function exercises
+const oneWord = function(str) {
+    return str.replace(/ /g, '').toLowerCase();
+};
+
+const capitalizeFirst = function(str) {
+    const [first, ...others] = str.split(' ');
+    return [first.toUpperCase(), ...others].join(' ');
+};
+
+const strTransformer = function(str, fn) { // higher-order function
+    console.log(`Original: ${str}`);
+    console.log(`Transform string: ${fn(str)}`);
+    console.log(`Transformed by: ${fn.name}`);
+};
+
+strTransformer('JavaScript is the best!', capitalizeFirst);
+strTransformer('JavaScript is the best!', oneWord);
