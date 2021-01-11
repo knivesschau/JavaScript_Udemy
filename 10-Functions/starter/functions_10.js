@@ -74,3 +74,21 @@ const strTransformer = function(str, fn) { // higher-order function
 
 strTransformer('JavaScript is the best!', capitalizeFirst);
 strTransformer('JavaScript is the best!', oneWord);
+
+// functions returning functions exercises
+const greet = function(greeting) {
+    return function(name) {
+        console.log(`${greeting} ${name}`);
+    };
+};
+
+const greeterStr = greet('Hey');
+greeterStr('Peach');
+greeterStr('Mario');
+greet('Hello')('Luigi');
+
+// arrow function refactor of greeting function
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+greetArr('Hiya')('Yoshi');
+
+// call and apply method exercises
