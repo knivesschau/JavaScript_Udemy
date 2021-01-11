@@ -135,3 +135,37 @@ bookPlane.call(mushroomAir, ...flightData); // same as APPLY METHOD
 console.log(mushroomAir);
 
 // bind method exercises
+const bookMA = bookPlane.bind(mushroomAir); // bind method explicitly sets this keyword for functions (returns a new function)
+const bookAW = bookPlane.bind(airWing);
+const bookSW = bookPlane.bind(southwest);
+bookMA(450, 'Larry Lakitu');
+
+const bookMA540 = bookPlane.bind(mushroomAir, 540); // setting specific parameters (aka booking for a specific flight no.)
+bookMA540('Kuribo the Shoe');
+bookMA540('Tanooki Mario');
+
+// bind method and event listeners
+southwest.planes = 300; 
+southwest.buyPlane = function() {
+    this.planes++; 
+    console.log(this.planes);
+};
+
+document.querySelector('.buy').addEventListener('click', southwest.buyPlane.bind(southwest));
+
+// partial application with bind 
+const addTax = (rate, value) => value + (value * rate); 
+const addVAT = addTax.bind(null, 0.23);
+
+console.log(addVAT(100));
+console.log(addVAT(200));
+
+// mini-challenge
+const addTaxRate = function(rate) {
+    return function(value) {
+        return value + (value * rate);
+    };
+};
+
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100));
