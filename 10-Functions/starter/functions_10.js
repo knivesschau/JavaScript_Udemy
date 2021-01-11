@@ -92,3 +92,46 @@ const greetArr = greeting => name => console.log(`${greeting} ${name}`);
 greetArr('Hiya')('Yoshi');
 
 // call and apply method exercises
+const southwest = {
+    airline: 'Southwest',
+    planeCode: 'SW',
+    bookings: [],
+    book(flightNum, name) {
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.planeCode}${flightNum}`);
+        this.bookings.push({flight: `${this.planeCode}${flightNum}`, name});
+    },
+};
+
+southwest.book(240, 'Bowser Koopa');
+southwest.book(358, 'Monty Mole');
+console.log(southwest);
+
+const bookPlane = southwest.book;
+
+const airWing = {
+    airline: 'Air Wing',
+    planeCode: 'AW',
+    bookings: [],
+};
+
+// bookPlane(350, 'Princess Peach'); // does NOT WORK
+bookPlane.call(airWing, 350, 'Princess Peach'); // use call method to explicitly set THIS keyword 
+console.log(airWing);
+
+bookPlane.call(southwest, 240, 'Kamek Koopaling');
+console.log(southwest);
+
+const mushroomAir = {
+    airline: 'Mushroom Air',
+    planeCode: 'MK',
+    bookings: [],
+};
+
+bookPlane.call(mushroomAir, 540, 'Kooper Koopington');
+
+const flightData = [540, 'Toadette The Toad'];
+bookPlane.apply(mushroomAir, flightData); // apply method is the same, but accepts an ARRAY OF DATA
+bookPlane.call(mushroomAir, ...flightData); // same as APPLY METHOD
+console.log(mushroomAir);
+
+// bind method exercises
