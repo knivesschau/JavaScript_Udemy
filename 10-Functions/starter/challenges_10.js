@@ -1,5 +1,6 @@
 'use strict';
 
+// challenge #1
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -39,3 +40,16 @@ const bonusData2 = [1, 5, 3, 9, 6, 1];
 
 poll.displayResults.call({ answers: [...bonusData1] });
 poll.displayResults.call({ answers: [...bonusData2] }, 'string');
+
+// challenge #2
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+
+// this function in the challenge works and turns the h1 blue because of the closures in the function-
+// the event listener gains access to the variables in the first IIFE due to the function variables being preserved in memory.
