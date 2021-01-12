@@ -177,3 +177,17 @@ const addTaxRate = function (rate) {
 
 const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100));
+
+// Immediate Invoked Function Expressions (IIFE) exercises
+// normal function expression
+const runOnce = function () {
+  console.log('This function will only run when we call it!');
+};
+runOnce();
+
+// IIFE function expressions
+(function () {
+  console.log('This IIFE function will only run once!');
+})();
+
+(() => console.log('This arrow function will also only run once!'))();
