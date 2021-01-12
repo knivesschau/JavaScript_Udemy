@@ -191,3 +191,62 @@ runOnce();
 })();
 
 (() => console.log('This arrow function will also only run once!'))();
+
+// closure exercises
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+// console.dir(booker); // can view the closures of functions in the console!
+
+// additional closure example #1
+let x;
+
+const y = function () {
+  const a = 40;
+
+  x = function () {
+    console.log(a * 2);
+  };
+};
+
+y();
+x(); // x CLOSED OVER THE VARIABLE ENVIRONMENT OF Y!
+
+const z = function () {
+  const b = 100;
+
+  x = function () {
+    console.log(b * 2);
+  };
+};
+
+z();
+x(); // x CLOSED OVER VARIABLE ENVIRONMENT OF Z! closure will be reassigned when variable is reassigned
+
+// additional closure example #2
+const boardPassengers = function (n, wait) {
+  const boardGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are currently boarding ${n} passengers!`);
+    console.log(
+      `There are three boarding groups for this flight, each has ${boardGroup} passengers`
+    );
+  }, wait * 1000);
+
+  console.log(`We will start boarding in ${wait} seconds...`);
+};
+
+const boardGroup = 1000; // doesn't work, closures have priority over the scope chain vs. global scope vars
+boardPassengers(180, 3);
