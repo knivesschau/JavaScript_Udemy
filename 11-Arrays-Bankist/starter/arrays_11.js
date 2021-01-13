@@ -74,3 +74,25 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// additional array methods (slice, splice, reverse, concat, join)
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4)); // end parameter not included in output!
+console.log(arr.slice(-1)); // last element in array with slice
+console.log(arr.slice(1, -2)); // extract everything except last two elements
+console.log(arr.slice()); // shallow copy array with slice
+
+console.log(arr.splice(2)); // mutates original array after specified elements are extracted into new array
+arr.splice(-1);
+console.log(arr);
+
+let arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse()); // reverse mutates original array
+console.log(arr2);
+
+const letters = arr.concat(arr2); // concat does not mutate original array
+console.log(letters);
+
+console.log(letters.join('-')); // join works similar to strings
