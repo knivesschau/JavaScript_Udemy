@@ -73,6 +73,39 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// forEach exercises
+
+// forEach with maps + sets
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+const uniqueCurrencies = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(uniqueCurrencies);
+
+uniqueCurrencies.forEach(function (value, _value, map) {
+  console.log(`${_value}: ${value}`); // the key is the same as the value in sets!
+});
+
+// for of loop with array
+// for (const [i, transaction] of movements.entries()) {
+//   if (transaction > 0) {
+//     console.log(`Transaction ${i + 1}: You deposited $${transaction}`);
+//   } else {
+//     console.log(`Transaction ${i + 1}: You withdrew $${Math.abs(transaction)}`);
+//   }
+// }
+
+// forEach solution
+movements.forEach(function (transaction, i, arr) {
+  // forEach passes in the current element, index, array, etc. (in for of loops...index is first!)
+  if (transaction > 0) {
+    console.log(`Transaction ${i + 1}: You deposited $${transaction}`);
+  } else {
+    console.log(`Transaction ${i + 1}: You withdrew $${Math.abs(transaction)}`);
+  }
+});
+
 /////////////////////////////////////////////////
 
 // additional array methods (slice, splice, reverse, concat, join)
