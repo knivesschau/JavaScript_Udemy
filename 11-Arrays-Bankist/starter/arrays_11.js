@@ -61,6 +61,28 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// functionality of bankist app
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (transaction, i) {
+    const transacType = transaction > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+    <div class="movements__row">
+    <div class="movements__type movements__type--${transacType}"> ${
+      i + 1
+    } ${transacType} </div>
+    <div class="movements__value">${transaction}</div>
+    </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -76,16 +98,16 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // forEach exercises
 
 // forEach with maps + sets
-currencies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
 
-const uniqueCurrencies = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
-console.log(uniqueCurrencies);
+// const uniqueCurrencies = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// console.log(uniqueCurrencies);
 
-uniqueCurrencies.forEach(function (value, _value, map) {
-  console.log(`${_value}: ${value}`); // the key is the same as the value in sets!
-});
+// uniqueCurrencies.forEach(function (value, _value, map) {
+//   console.log(`${_value}: ${value}`); // the key is the same as the value in sets!
+// });
 
 // for of loop with array
 // for (const [i, transaction] of movements.entries()) {
@@ -97,35 +119,35 @@ uniqueCurrencies.forEach(function (value, _value, map) {
 // }
 
 // forEach solution
-movements.forEach(function (transaction, i, arr) {
-  // forEach passes in the current element, index, array, etc. (in for of loops...index is first!)
-  if (transaction > 0) {
-    console.log(`Transaction ${i + 1}: You deposited $${transaction}`);
-  } else {
-    console.log(`Transaction ${i + 1}: You withdrew $${Math.abs(transaction)}`);
-  }
-});
+// movements.forEach(function (transaction, i, arr) {
+//   forEach passes in the current element, index, array, etc. (in for of loops...index is first!)
+//   if (transaction > 0) {
+//     console.log(`Transaction ${i + 1}: You deposited $${transaction}`);
+//   } else {
+//     console.log(`Transaction ${i + 1}: You withdrew $${Math.abs(transaction)}`);
+//   }
+// });
 
 /////////////////////////////////////////////////
 
 // additional array methods (slice, splice, reverse, concat, join)
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4)); // end parameter not included in output!
-console.log(arr.slice(-1)); // last element in array with slice
-console.log(arr.slice(1, -2)); // extract everything except last two elements
-console.log(arr.slice()); // shallow copy array with slice
+// console.log(arr.slice(2));
+// console.log(arr.slice(2, 4)); // end parameter not included in output!
+// console.log(arr.slice(-1)); // last element in array with slice
+// console.log(arr.slice(1, -2)); // extract everything except last two elements
+// console.log(arr.slice()); // shallow copy array with slice
 
-console.log(arr.splice(2)); // mutates original array after specified elements are extracted into new array
-arr.splice(-1);
-console.log(arr);
+// console.log(arr.splice(2)); // mutates original array after specified elements are extracted into new array
+// arr.splice(-1);
+// console.log(arr);
 
-let arr2 = ['j', 'i', 'h', 'g', 'f'];
-console.log(arr2.reverse()); // reverse mutates original array
-console.log(arr2);
+// let arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse()); // reverse mutates original array
+// console.log(arr2);
 
-const letters = arr.concat(arr2); // concat does not mutate original array
-console.log(letters);
+// const letters = arr.concat(arr2); // concat does not mutate original array
+// console.log(letters);
 
-console.log(letters.join('-')); // join works similar to strings
+// console.log(letters.join('-')); // join works similar to strings
