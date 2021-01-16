@@ -111,6 +111,16 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// filter exercises
+const deposits = movements.filter(function (transaction) {
+  return transaction > 0;
+});
+
+const withdrawals = movements.filter(transaction => transaction < 0);
+
+console.log(deposits);
+console.log(withdrawals);
+
 // map exercises
 // const eurToUSD = 1.1;
 
