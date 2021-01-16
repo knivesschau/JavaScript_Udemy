@@ -62,6 +62,8 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // functionality of bankist app
+
+// display transactions
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -82,6 +84,20 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+// username generation
+const createUsernames = function (users) {
+  users.forEach(function (user) {
+    user.username = user.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
