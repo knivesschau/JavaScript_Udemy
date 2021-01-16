@@ -95,8 +95,22 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// forEach exercises
+// map exercises
+// const eurToUSD = 1.1;
 
+// const conversion = movements.map(curr => curr * eurToUSD);
+// console.log(conversion);
+
+// const transactStr = movements.map(
+//   (mov, i) =>
+//     `Transaction ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
+
+// console.log(transactStr);
+
+// forEach exercises
 // forEach with maps + sets
 // currencies.forEach(function (value, key, map) {
 //   console.log(`${key}: ${value}`);
