@@ -85,6 +85,14 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+// print bank balance
+const calcBankBalance = function (transactions) {
+  const balance = transactions.reduce((acc, mov) => (acc += mov), 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcBankBalance(account1.movements);
+
 // username generation
 const createUsernames = function (users) {
   users.forEach(function (user) {
@@ -111,15 +119,31 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// reduce exercises
+const balance = movements.reduce((acc, curr) => (acc += curr), 0);
+
+console.log(balance);
+
+// maximum value with reduce
+const maxValue = movements.reduce((acc, mov) => {
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+}, movements[0]);
+
+console.log(maxValue);
+
 // filter exercises
-const deposits = movements.filter(function (transaction) {
-  return transaction > 0;
-});
+// const deposits = movements.filter(function (transaction) {
+//   return transaction > 0;
+// });
 
-const withdrawals = movements.filter(transaction => transaction < 0);
+// const withdrawals = movements.filter(transaction => transaction < 0);
 
-console.log(deposits);
-console.log(withdrawals);
+// console.log(deposits);
+// console.log(withdrawals);
 
 // map exercises
 // const eurToUSD = 1.1;

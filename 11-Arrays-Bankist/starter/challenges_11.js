@@ -28,5 +28,35 @@ const checkDogs = function (dogsJulia, dogsKate) {
   });
 };
 
-checkDogs(julia1, kate1);
-checkDogs(julia2, kate2);
+// checkDogs(julia1, kate1);
+// checkDogs(julia2, kate2);
+
+// coding challenge #2
+const juliaData = [5, 2, 4, 1, 15, 8, 3];
+const kateData = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = function (dogs) {
+  const humanAges = dogs
+    .map(age => {
+      if (age <= 2) {
+        return age * 2;
+      } else if (age > 2) {
+        return 16 + age * 4;
+      }
+    })
+    .filter(age => age >= 18);
+
+  // alt map is dogs.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+
+  const ageAvg = humanAges.reduce((acc, age) => {
+    return (acc += age / humanAges.length);
+  }, 0);
+
+  // alt reduce is humanAges.reduce((acc, age) => acc += age, 0) / humanAges.length
+
+  console.log(ageAvg);
+  console.log(humanAges);
+};
+
+calcAverageHumanAge(juliaData);
+calcAverageHumanAge(kateData);
