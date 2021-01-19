@@ -83,40 +83,58 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
-
 // print bank balance
 const calcBankBalance = function (transactions) {
   const balance = transactions.reduce((acc, mov) => (acc += mov), 0);
   labelBalance.textContent = `${balance}€`;
 };
 
-calcBankBalance(account1.movements);
-
 // summary of funds
-const calcFundSummary = function (transactions) {
-  const incomingFunds = transactions
+const calcFundSummary = function (acc) {
+  const incomingFunds = acc.movements
     .filter(transac => transac > 0)
     .reduce((acc, transac) => (acc += transac), 0);
 
   labelSumIn.textContent = `${incomingFunds}€`;
 
-  const outgoingFunds = transactions
+  const outgoingFunds = acc.movements
     .filter(transac => transac < 0)
     .reduce((acc, transac) => (acc += transac), 0);
 
   labelSumOut.textContent = `${Math.abs(outgoingFunds)}€`;
 
-  const interest = transactions
+  const interest = acc.movements
     .filter(transac => transac > 0)
-    .map(transac => (transac * 1.2) / 100)
+    .map(transac => (transac * acc.interestRate) / 100)
     .filter(intrst => intrst >= 1)
     .reduce((acc, intrst) => (acc += intrst), 0);
 
   labelSumInterest.textContent = `${interest}€`;
 };
 
-calcFundSummary(account1.movements);
+// event handler for login
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }!`;
+
+    containerApp.style.opacity = 100;
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    displayMovements(currentAccount.movements);
+    calcBankBalance(currentAccount.movements);
+    calcFundSummary(currentAccount);
+  }
+});
 
 // username generation
 const createUsernames = function (users) {
@@ -144,6 +162,10 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// find exercises
+// const firstWithdrawal = movements.find(transac => transac < 0);
+// console.log(firstWithdrawal);
+
 // chaining exercises
 // const totalDepositsUSD = movements
 //   .filter(mov => mov > 0)
@@ -157,7 +179,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // console.log(balance);
 
-// // maximum value with reduce
+// maximum value with reduce
 // const maxValue = movements.reduce((acc, mov) => {
 //   if (acc > mov) {
 //     return acc;
