@@ -60,3 +60,14 @@ const calcAverageHumanAge = function (dogs) {
 
 calcAverageHumanAge(juliaData);
 calcAverageHumanAge(kateData);
+
+// coding challenge #3
+// refactor of dog age functions with method chaining
+const calcHumanAgesRefac = dogs =>
+  dogs
+    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => (acc += age / arr.length));
+
+console.log(calcHumanAgesRefac(juliaData));
+console.log(calcHumanAgesRefac(kateData));
