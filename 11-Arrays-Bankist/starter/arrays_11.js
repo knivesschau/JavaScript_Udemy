@@ -75,7 +75,7 @@ const displayMovements = function (movements) {
     <div class="movements__type movements__type--${transacType}"> ${
       i + 1
     } ${transacType} </div>
-    <div class="movements__value">${transaction}</div>
+    <div class="movements__value">${transaction}€</div>
     </div>
     `;
 
@@ -88,10 +88,35 @@ displayMovements(account1.movements);
 // print bank balance
 const calcBankBalance = function (transactions) {
   const balance = transactions.reduce((acc, mov) => (acc += mov), 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance}€`;
 };
 
 calcBankBalance(account1.movements);
+
+// summary of funds
+const calcFundSummary = function (transactions) {
+  const incomingFunds = transactions
+    .filter(transac => transac > 0)
+    .reduce((acc, transac) => (acc += transac), 0);
+
+  labelSumIn.textContent = `${incomingFunds}€`;
+
+  const outgoingFunds = transactions
+    .filter(transac => transac < 0)
+    .reduce((acc, transac) => (acc += transac), 0);
+
+  labelSumOut.textContent = `${Math.abs(outgoingFunds)}€`;
+
+  const interest = transactions
+    .filter(transac => transac > 0)
+    .map(transac => (transac * 1.2) / 100)
+    .filter(intrst => intrst >= 1)
+    .reduce((acc, intrst) => (acc += intrst), 0);
+
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcFundSummary(account1.movements);
 
 // username generation
 const createUsernames = function (users) {
@@ -119,21 +144,29 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// chaining exercises
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map(mov => mov * 1.1)
+//   .reduce((acc, mov) => (acc += mov), 0);
+
+// console.log(totalDepositsUSD);
+
 // reduce exercises
-const balance = movements.reduce((acc, curr) => (acc += curr), 0);
+// const balance = movements.reduce((acc, curr) => (acc += curr), 0);
 
-console.log(balance);
+// console.log(balance);
 
-// maximum value with reduce
-const maxValue = movements.reduce((acc, mov) => {
-  if (acc > mov) {
-    return acc;
-  } else {
-    return mov;
-  }
-}, movements[0]);
+// // maximum value with reduce
+// const maxValue = movements.reduce((acc, mov) => {
+//   if (acc > mov) {
+//     return acc;
+//   } else {
+//     return mov;
+//   }
+// }, movements[0]);
 
-console.log(maxValue);
+// console.log(maxValue);
 
 // filter exercises
 // const deposits = movements.filter(function (transaction) {
