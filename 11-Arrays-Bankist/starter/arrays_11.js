@@ -84,9 +84,9 @@ const displayMovements = function (movements) {
 };
 
 // print bank balance
-const calcBankBalance = function (transactions) {
-  const balance = transactions.reduce((acc, mov) => (acc += mov), 0);
-  labelBalance.textContent = `${balance}€`;
+const calcBankBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => (acc += mov), 0);
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 // summary of funds
@@ -112,6 +112,28 @@ const calcFundSummary = function (acc) {
   labelSumInterest.textContent = `${interest}€`;
 };
 
+// transfer money
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const trnsfrAmount = Number(inputTransferAmount.value);
+  const receivingAcct = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    trnsfrAmount > 0 &&
+    receivingAcct &&
+    currentAccount.balance >= trnsfrAmount &&
+    receivingAcct?.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(-trnsfrAmount);
+    receivingAcct.movements.push(trnsfrAmount);
+    updateUI(currentAccount);
+  }
+});
+
 // event handler for login
 let currentAccount;
 
@@ -130,9 +152,7 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    displayMovements(currentAccount.movements);
-    calcBankBalance(currentAccount.movements);
-    calcFundSummary(currentAccount);
+    updateUI(currentAccount);
   }
 });
 
@@ -148,7 +168,13 @@ const createUsernames = function (users) {
 };
 
 createUsernames(accounts);
-console.log(accounts);
+
+// update UI
+const updateUI = function (acc) {
+  displayMovements(acc.movements);
+  calcBankBalance(acc);
+  calcFundSummary(acc);
+};
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
