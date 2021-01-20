@@ -156,6 +156,27 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+// close account event handler
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  inputClosePin.blur();
+  inputCloseUsername.blur();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+  }
+
+  inputClosePin.value = inputCloseUsername.value = '';
+});
+
 // username generation
 const createUsernames = function (users) {
   users.forEach(function (user) {
