@@ -225,6 +225,24 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// flat + flatMap exercises
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+
+// console.log(arr.flat());
+// console.log(arrDeep.flat(2)); // define the depth to grab sub-nested arrays
+
+// const overallBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => (acc += mov), 0);
+// console.log(overallBalance);
+
+// const flatMapBalance = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => (acc += mov), 0);
+// console.log(flatMapBalance);
+
 // some and every exercises
 // const anyDeposits = movements.some(mov => mov > 1500);
 // console.log(anyDeposits);
