@@ -64,10 +64,14 @@ const inputClosePin = document.querySelector('.form__input--pin');
 // functionality of bankist app
 
 // display transactions
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (transaction, i) {
+  const sortedTransactions = sort
+    ? movements.slice().sort((a, b) => a - b)
+    : movements;
+
+  sortedTransactions.forEach(function (transaction, i) {
     const transacType = transaction > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -82,6 +86,15 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+
+// sort transactions
+let sorted = false;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 
 // print bank balance
 const calcBankBalance = function (acc) {
@@ -224,6 +237,14 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// sort exercises
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners.sort()); // sort mutates the array!
+// ascending order
+// console.log(movements.sort((a, b) => a - b));
+// descending order
+// console.log(movements.sort((a, b) => b - a));
 
 // flat + flatMap exercises
 // const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
