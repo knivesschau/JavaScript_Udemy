@@ -238,6 +238,32 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// other ways to create and fill arrays
+const arr = [1, 2, 3, 4, 5, 6, 7];
+const x = new Array(7);
+
+console.log(x);
+x.fill(1, 3, 5); // start filling values at index 3, stop at index 5
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+// array.from method
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', '')) // grabbing raw elements of the transactions listed in the UI
+  );
+  console.log(movementsUI);
+});
+
 // sort exercises
 // const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
 // console.log(owners.sort()); // sort mutates the array!
