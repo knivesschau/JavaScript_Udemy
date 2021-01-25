@@ -316,3 +316,16 @@ btnSort.addEventListener('click', function (e) {
 //     }
 //   });
 // });
+
+// bigInt exercises
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(30330303003030030300303030030303n); // n converts to bigInt!
+console.log(BigInt(39393933993920439210394020));
+console.log(10000n + 10000n);
+
+const huge = 3030050505405n; // math operators don't work on bigInt! ex. Math.sqrt
+const num = 23;
+console.log(huge * BigInt(num)); // cannot mix bigInt with normal int, have to convert int
+console.log(huge + ' is REALLY BIG!');
+
+console.log(10n / 3n); // cuts off decimal part for division
