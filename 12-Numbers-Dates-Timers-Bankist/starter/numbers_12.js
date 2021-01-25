@@ -318,14 +318,40 @@ btnSort.addEventListener('click', function (e) {
 // });
 
 // bigInt exercises
-console.log(Number.MAX_SAFE_INTEGER);
-console.log(30330303003030030300303030030303n); // n converts to bigInt!
-console.log(BigInt(39393933993920439210394020));
-console.log(10000n + 10000n);
+// console.log(Number.MAX_SAFE_INTEGER);
+// console.log(30330303003030030300303030030303n); // n converts to bigInt!
+// console.log(BigInt(39393933993920439210394020));
+// console.log(10000n + 10000n);
 
-const huge = 3030050505405n; // math operators don't work on bigInt! ex. Math.sqrt
-const num = 23;
-console.log(huge * BigInt(num)); // cannot mix bigInt with normal int, have to convert int
-console.log(huge + ' is REALLY BIG!');
+// const huge = 3030050505405n; // math operators don't work on bigInt! ex. Math.sqrt
+// const num = 23;
+// console.log(huge * BigInt(num)); // cannot mix bigInt with normal int, have to convert int
+// console.log(huge + ' is REALLY BIG!');
 
-console.log(10n / 3n); // cuts off decimal part for division
+// console.log(10n / 3n); // cuts off decimal part for division
+
+// dates exercises
+// const now = new Date();
+// console.log(now);
+// console.log(new Date('December 25 2015'));
+// console.log(new Date(account1.movementsDates[0]));
+// console.log(new Date(2037, 10, 19, 15, 23, 5)); // months in JS are 0 based (january is 0)!
+// console.log(new Date(2037, 10, 31, 15, 23, 5)); // JS autocorrects date to next month
+// console.log(new Date(0));
+// console.log(new Date(3 * 24 * 60 * 60 * 1000)); // convert from days to milliseconds
+
+// working with dates
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(future.getFullYear()); // DO NOT USE GETYEAR
+// console.log(future.getMonth());
+// console.log(future.getDate());
+// console.log(future.getDay());
+// console.log(future.getHours());
+// console.log(future.getSeconds());
+// console.log(future.getMinutes());
+// console.log(future.toISOString());
+// console.log(future.getTime());
+// console.log(new Date(2142285780000));
+// console.log(Date.now());
+// future.setFullYear(2040);
+// console.log(future);
