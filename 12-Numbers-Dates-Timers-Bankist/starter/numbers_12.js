@@ -295,3 +295,24 @@ btnSort.addEventListener('click', function (e) {
 // console.log((2.7).toFixed(0));
 // console.log((2.345).toFixed(2));
 // console.log(+(2.345).toFixed(2));
+
+// remainder/modulo operator exercises
+// console.log(5 % 2); // 5 = 2 * 2 + 1
+// console.log(8 % 3); // 8 = 2 * 3 + 2
+// console.log(6 % 2); // no remainder because it divides cleanly!
+// console.log(7 % 2);
+
+// const isEven = n => n % 2 === 0;
+// console.log(isEven(8));
+// console.log(isEven(23));
+
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+//     if (i % 2 === 0) {
+//       row.style.backgroundColor = 'orangered';
+//     }
+//     if (i % 3 === 0) {
+//       row.style.backgroundColor = 'blue';
+//     }
+//   });
+// });
