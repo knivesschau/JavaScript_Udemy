@@ -42,8 +42,8 @@ const account2 = {
     '2020-01-25T14:18:46.235Z',
     '2020-02-05T16:33:06.386Z',
     '2020-04-10T14:43:26.374Z',
-    '2021-01-23T18:49:59.371Z',
-    '2021-01-20T12:01:20.894Z',
+    '2020-06-25T18:49:59.371Z',
+    '2020-07-26T12:01:20.894Z',
   ],
   currency: 'USD',
   locale: 'en-US',
@@ -87,15 +87,9 @@ const formatMovementDate = function (date, locale) {
 
   const daysElapsed = timePassed(new Date(), date);
 
-  if (daysElapsed === 0) {
-    return 'Today';
-  }
-  if (daysElapsed === 1) {
-    return 'Yesterday';
-  }
-  if (daysElapsed <= 7) {
-    return `${daysElapsed} days ago`;
-  }
+  if (daysElapsed === 0) return 'Today';
+  if (daysElapsed === 1) return 'Yesterday';
+  if (daysElapsed <= 7) return `${daysElapsed} days ago`;
 
   return new Intl.DateTimeFormat(locale).format(date);
 };
@@ -267,15 +261,18 @@ btnLoan.addEventListener('click', function (e) {
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      currentAccount.movements.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
+
+    inputLoanAmount.value = '';
   }
-  inputLoanAmount.value = '';
 });
 
 btnClose.addEventListener('click', function (e) {
