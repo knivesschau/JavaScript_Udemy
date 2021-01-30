@@ -179,14 +179,37 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  const countdown = function () {
+    const min = String(Math.trunc(timer / 60)).padStart(2, 0);
+    const sec = String(timer % 60).padStart(2, 0);
+
+    // in each call, print remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // when timer hits 0, stop timer and log out user
+    if (timer === 0) {
+      clearInterval(ticker);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    // decrease by 1 sec
+    timer--;
+  };
+
+  // set timer to 5 minutes
+  let timer = 120;
+
+  // call timer every second
+  countdown();
+  const ticker = setInterval(countdown, 1000);
+  return ticker;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
-
-// FAKE LOGIN TO PROGRAM FUNCTIONALITY (FOR NOW)
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+let currentAccount, ticker;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -223,6 +246,12 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Timer
+    if (ticker) {
+      clearInterval(ticker);
+    }
+    ticker = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -251,6 +280,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(ticker);
+    ticker = startLogOutTimer();
   }
 });
 
@@ -269,6 +302,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(ticker);
+      ticker = startLogOutTimer();
     }, 2500);
 
     inputLoanAmount.value = '';
