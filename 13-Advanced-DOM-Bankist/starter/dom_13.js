@@ -48,6 +48,27 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+// Additional Event Handlers //
+// const h1 = document.querySelector('h1');
+
+// const alertH1 = function (e) {
+//   alert('You are reading the heading!');
+
+//   h1.removeEventListener('mouseenter', alertH1);
+// };
+
+// h1.addEventListener('mouseenter', alertH1);
+
+// setTimeout(() => removeEventListener('mouseenter', alertH1), 3000);
+
+// h1.onmouseenter = function (e) {
+//   alert('You are reading the heading!');
+// };
+
+// h1.addEventListener('mouseenter', function (e) {
+//   alert('You are reading the heading!');
+// });
+
 // Lectures on Element Selection + Styles, Attributes, + Classes //
 // console.log(document.documentElement);
 // console.log(document.head);
