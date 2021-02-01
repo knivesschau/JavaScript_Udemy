@@ -48,23 +48,34 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+// Event Propogation Exercises //
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// stop propogation
+//   e.stopPropagation();
+// });
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+
 // Additional Event Handlers //
 // const h1 = document.querySelector('h1');
-
 // const alertH1 = function (e) {
 //   alert('You are reading the heading!');
-
 //   h1.removeEventListener('mouseenter', alertH1);
 // };
-
 // h1.addEventListener('mouseenter', alertH1);
-
 // setTimeout(() => removeEventListener('mouseenter', alertH1), 3000);
-
 // h1.onmouseenter = function (e) {
 //   alert('You are reading the heading!');
 // };
-
 // h1.addEventListener('mouseenter', function (e) {
 //   alert('You are reading the heading!');
 // });
