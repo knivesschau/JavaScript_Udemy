@@ -86,6 +86,27 @@ tabsContainer.addEventListener('click', function (e) {
     .classList.add('operations__content--active');
 });
 
+// Fade-Out on Nav Menu //
+const nav = document.querySelector('.nav');
+
+const handleFade = function (e, opacity) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(ele => {
+      if (ele !== link) {
+        ele.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleFade.bind(0.5));
+nav.addEventListener('mouseout', handleFade.bind(1));
+
 // DOM Traversing Exercises
 // const h1 = document.querySelector('h1');
 
