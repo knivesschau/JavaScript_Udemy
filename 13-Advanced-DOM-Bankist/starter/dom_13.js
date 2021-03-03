@@ -107,6 +107,28 @@ const handleFade = function (e, opacity) {
 nav.addEventListener('mouseover', handleFade.bind(0.5));
 nav.addEventListener('mouseout', handleFade.bind(1));
 
+// Sticky Navigation (Intersection Observer API) //
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
+
 // DOM Traversing Exercises
 // const h1 = document.querySelector('h1');
 
